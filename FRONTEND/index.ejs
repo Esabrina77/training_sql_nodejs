@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Page d'accueil</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+    <form action="/ajouter" method="post" enctype="multipart/form-data" onsubmit="return ValidateForm()">
+        <input type="hidden" name="id" id="id">
+
+        <label for="titre">Titre</label><br>
+        <input type="text" name="titre" id="titre" placeholder="Titre">
+        <br>
+        <label for="image">Image</label>
+        <input type="file" name="image" id="image">
+
+        <label for="description">Description</label><br>
+        <textarea name="description" id="description" placeholder="Description"></textarea>
+        <br>
+        <button type="submit">Ajouter</button>
+    </form>
+    <h1>Liste des notes</h1>
+    <% notes.forEach(function(note) { %>
+        <div>
+            <h2>
+                <%= note.titre %>
+            </h2>
+            <p>
+                <%= note.description %>
+            </p>
+            <input type="button" value="Supprimer" 
+            onclick="supprimer('<%= note.id %>')">
+            <input type="button" value="Modifier"
+                onclick="remplirDonnees('<%= note.id %>','<%= note.titre %>','<%= note.description %>')">
+        </div>
+        <% }) %>
+
+</body>
+<script src="assets/js/main.js"></script>
+</html>
